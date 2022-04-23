@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\MutasiBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,11 @@ Route::POST('custom-registration',[CustomAuthController:: class,'customRegistrat
 Route::POST('custom-login',[CustomAuthController:: class,'customLogin'])->name('custom.login');
 Route::get('dashboard',[CustomAuthController:: class,'dashboard'])->name('dashboard');
 Route::get('logout',[CustomAuthController:: class,'logOut'])->name('logout');
+
+// Barang
+Route::get('barang',[BarangController:: class,'index'])->name('list-barang');
+
+// Mutasi barang
+Route::get('mutasibarang',[MutasiBarangController:: class,'index'])->name('list-mutasi');
 
 
