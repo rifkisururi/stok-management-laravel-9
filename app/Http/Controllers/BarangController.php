@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class BarangController extends Controller
 {
     public function index(){
-        foreach (Barang::all() as $b) {
-            echo $b->nama;
-        }
+        //Barang::all()
+        return view('barang.index');
     }
 }
