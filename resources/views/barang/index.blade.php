@@ -9,34 +9,33 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach($data as $dt)
+                        <tr>
+                            <td>{{$dt->kode}}</td>
+                            <td>{{$dt->nama}}</td>
+                            <td>0</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" id="brg_{{$dt->id}}">Edit</button>
+                                <button class="btn btn-danger btn-sm" id="brg_{{$dt->id}}">Hapus</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
+                        <th>Aksi</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                </tbody>
             </table>
         </div>
     </div>
