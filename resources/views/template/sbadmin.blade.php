@@ -359,8 +359,11 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-    
-    <script src="js/barang.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    @yield('js')
+
 
 </body>
 
