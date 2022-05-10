@@ -6,7 +6,8 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <button id="add">Tambah</button>
+            <table class="table table-bordered tblBarang" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -40,4 +41,6 @@
         </div>
     </div>
 </div>
+
+<script src="js/barang.js"></script>
 @endsection
