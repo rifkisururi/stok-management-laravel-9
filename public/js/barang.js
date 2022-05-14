@@ -59,13 +59,46 @@ function getData(classTr){
     data = new Object();
     data.id = classTr;
     data.kode = $(`.tr_${classTr} .kode`).val();
-    data.nama =  $(`.tr_${classTr} .nama`).val();;
+    data.nama =  $(`.tr_${classTr} .nama`).val();
+    data._token = $('meta[name="csrf-token"]').attr('content');
+    return data;
+}
+
+
+function getDataFromRecord(classTr){
+    data = new Object();
+    data.id = classTr;
+    data.kode = $(`.tr_${classTr} .kode`).html().trim();
+    data.nama =  $(`.tr_${classTr} .nama`).html().trim()
     data._token = $('meta[name="csrf-token"]').attr('content');
     return data;
 }
 
 $(document).on("click", ".btnEdit", function(){
-    var classTr = $(this).attr("id").replace("brg_","tr_");
-    var data = getData(classTr);
+    var classTr = $(this).attr("id").replace("brg_","");
+    var data = getDataFromRecord(classTr);
     console.log(data);
+
+    var htmlFormEdit = `
+        <tr class="tr_${data.id} formEdit_${data.id}">
+            <td><input type="text" class="form-control kode" value="${data.kode}"></td>
+            <td><input type="text" class="form-control nama" value="${data.nama}"></td>
+            <td>0</td>
+            <td>
+                <button class="btn btn-primary btnSaveEdit" id="btnSave_${data.id}">Update</button>
+                <button class="btn btn-danger btnCancelEdit" id="btnCancel_${data.id}">Batal</button>
+            </td>
+        </tr>
+        `;
+    $(`.tr_${data.id}`).hide();
+    $(`.tr_${data.id}`).before(htmlFormEdit);
 });
+
+// cancel edit
+$(document).on("click", ".btnCancelEdit", function(){
+    var id = $(this).attr("id").replace("btnCancel_","");
+    $(`.formEdit_${id}`).remove();
+    $(`.tr_${id}`).show();
+});
+
+// action update 
