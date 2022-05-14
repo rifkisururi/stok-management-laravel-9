@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
 </head>
 

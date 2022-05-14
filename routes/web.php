@@ -29,6 +29,8 @@ Route::get('logout',[CustomAuthController:: class,'logOut'])->name('logout');
 
 // Barang
 Route::get('barang',[BarangController:: class,'index'])->name('list-barang');
+Route::POST('barang/store',[BarangController:: class,'store']);
+
 
 // Mutasi barang
 Route::get('mutasibarang',[MutasiBarangController:: class,'index'])->name('list-mutasi');

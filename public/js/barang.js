@@ -29,6 +29,30 @@ $(document).on("click", ".btnSave", function(){
     console.log(data);
 
     // aksi buat kirim data ke controller
+    $.ajax({
+        url : "barang/store",
+        type : "POST",
+        data : data,
+        success:function(respond){
+            console.log(respond);
+            var htmlNewRecore = `
+            <tr class="tr_${respond.id}">
+                <td class="kode">${data.kode}</td>
+                <td class="nama">${data.nama}</td>
+                <td>0</td>
+                <td>
+                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
+                </td>
+            </tr>
+            `;
+            $(`tbody`).prepend(htmlNewRecore);
+            $('.tr_'+id).remove();
+        },
+        error:function(){
+            alert("terjadi kesalahan");
+        }
+    })
 });
 
 function getData(classTr){
@@ -36,6 +60,12 @@ function getData(classTr){
     data.id = classTr;
     data.kode = $(`.tr_${classTr} .kode`).val();
     data.nama =  $(`.tr_${classTr} .nama`).val();;
-
+    data._token = $('meta[name="csrf-token"]').attr('content');
     return data;
 }
+
+$(document).on("click", ".btnEdit", function(){
+    var classTr = $(this).attr("id").replace("brg_","tr_");
+    var data = getData(classTr);
+    console.log(data);
+});

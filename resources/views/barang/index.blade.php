@@ -17,13 +17,13 @@
                 </thead>
                 <tbody>
                     @foreach($data as $dt)
-                        <tr>
-                            <td>{{$dt->kode}}</td>
-                            <td>{{$dt->nama}}</td>
+                        <tr class="tr_{{$dt->id}}">
+                            <td class="kode">{{$dt->kode}}</td>
+                            <td class="nama">{{$dt->nama}}</td>
                             <td>0</td>
                             <td>
-                                <button class="btn btn-warning btn-sm" id="brg_{{$dt->id}}">Edit</button>
-                                <button class="btn btn-danger btn-sm" id="brg_{{$dt->id}}">Hapus</button>
+                                <button class="btn btn-warning btn-sm btnEdit" id="brg_{{$dt->id}}">Edit</button>
+                                <button class="btn btn-danger btn-sm btnHapus" id="brg_{{$dt->id}}">Hapus</button>
                             </td>
                         </tr>
                     @endforeach

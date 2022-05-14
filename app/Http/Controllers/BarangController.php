@@ -12,4 +12,13 @@ class BarangController extends Controller
         $data = DB::table('barang')->get();
         return view('barang.index', ['data' => $data]);
     }
+
+    public function store(Request $request){
+        $data = new Barang($request->all());
+        $data->save();
+        return response()->json(array(
+            'success' => true,
+            'last_insert_id' => $data->id
+        ), 200);
+    }
 }
