@@ -21,4 +21,25 @@ class BarangController extends Controller
             'last_insert_id' => $data->id
         ), 200);
     }
+
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        $data = Barang::find($id);
+        $data->nama = $request->nama;
+        $data->kode = $request->kode;
+        $data->save();
+
+        return response()->json(array(
+            'success' => true
+        ), 200);
+    }
+
+    public function hapus(Request $request)
+    {
+        Barang::where('id',$request->id)->delete();
+        return response()->json(array(
+            'success' => true
+        ), 200);
+    }
 }

@@ -11,5 +11,6 @@ class Mutasi_barang extends Model
     
     protected $table = 'mutasi_barang';
     protected $primaryKey = 'id';
+    protected $fillable = ['id_barang','tanggal', 'jumlah', 'harga','category'];
     public $timestamps = false;
 }

@@ -46,11 +46,11 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -73,7 +73,7 @@
                 Transaksi
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('list-mutasi')}}">
+                <a class="nav-link" href="{{route('list-mutasi')}}?mulai=0000-00-00&selesai=0000-00-00">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Mutasi Barang</span></a>
             </li>

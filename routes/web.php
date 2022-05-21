@@ -16,9 +16,8 @@ use App\Http\Controllers\MutasiBarangController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () { return view('welcome');});
+Route::get('/',[CustomAuthController:: class,'index'])->name('login');
 
 Route::get('login',[CustomAuthController:: class,'index'])->name('login');
 Route::get('registration',[CustomAuthController:: class,'registration'])->name('registration');
@@ -30,9 +29,14 @@ Route::get('logout',[CustomAuthController:: class,'logOut'])->name('logout');
 // Barang
 Route::get('barang',[BarangController:: class,'index'])->name('list-barang');
 Route::POST('barang/store',[BarangController:: class,'store']);
+Route::POST('barang/update',[BarangController:: class,'update']);
+Route::POST('barang/hapus',[BarangController:: class,'hapus']);
 
 
 // Mutasi barang
 Route::get('mutasibarang',[MutasiBarangController:: class,'index'])->name('list-mutasi');
+Route::POST('mutasibarang/store',[MutasiBarangController:: class,'store']);
+Route::POST('mutasibarang/update',[MutasiBarangController:: class,'update']);
+Route::POST('mutasibarang/hapus',[MutasiBarangController:: class,'hapus']);
 
 

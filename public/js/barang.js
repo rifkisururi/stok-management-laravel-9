@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(".dataTables_length label").before("<button class='btn btn-primary' id='add'>Tambah</button>");
 });
 
+// ketika tombol tambah ditekan 
 $(document).on("click", "#add", function(){
     var id = makeid(10);
     $(".tblBarang tbody").prepend(`
@@ -17,6 +18,7 @@ $(document).on("click", "#add", function(){
     `);
 });
 
+// ketika tombol cancel di tekan
 $(document).on("click", ".btnCancel", function(){
     var classTr = $(this).attr("id").replace("btnCancel_","tr_");
     $("."+classTr).remove();
@@ -102,3 +104,53 @@ $(document).on("click", ".btnCancelEdit", function(){
 });
 
 // action update 
+$(document).on("click", ".btnSaveEdit", function(){
+    var id = $(this).attr("id").replace("btnSave_","");
+    var data = getData(id);
+    console.log(data);
+
+    // aksi buat kirim data ke controller
+    $.ajax({
+        url : "barang/update",
+        type : "POST",
+        data : data,
+        success:function(respond){
+            console.log(respond);
+            var htmlNewRecore = `
+            <tr class="tr_${respond.id}">
+                <td class="kode">${data.kode}</td>
+                <td class="nama">${data.nama}</td>
+                <td>0</td>
+                <td>
+                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
+                </td>
+            </tr>
+            `;
+            $(`tbody`).prepend(htmlNewRecore);
+            $('.tr_'+id).remove();
+        },
+        error:function(){
+            alert("terjadi kesalahan");
+        }
+    })
+});
+
+// hapus data
+$(document).on("click", ".btnHapus", function(){
+    var id = $(this).attr("id").replace("brg_","");
+    var data = getData(id);
+
+    $.ajax({
+        url : "barang/hapus",
+        type : "POST",
+        data : data,
+        success:function(respond){
+            console.log(respond);
+            $('.tr_'+id).remove();
+        },
+        error:function(){
+            alert("terjadi kesalahan");
+        }
+    })
+});
