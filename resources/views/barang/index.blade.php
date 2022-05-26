@@ -20,7 +20,7 @@
                         <tr class="tr_{{$dt->id}}">
                             <td class="kode">{{$dt->kode}}</td>
                             <td class="nama">{{$dt->nama}}</td>
-                            <td>0</td>
+                            <td class="stok">{{$dt->stok}}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm btnEdit" id="brg_{{$dt->id}}">Edit</button>
                                 <button class="btn btn-danger btn-sm btnHapus" id="brg_{{$dt->id}}">Hapus</button>

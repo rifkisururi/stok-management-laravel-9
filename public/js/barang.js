@@ -62,6 +62,7 @@ function getData(classTr){
     data.id = classTr;
     data.kode = $(`.tr_${classTr} .kode`).val();
     data.nama =  $(`.tr_${classTr} .nama`).val();
+    data.stok =  $(`.tr_${classTr} .stok`).val();
     data._token = $('meta[name="csrf-token"]').attr('content');
     return data;
 }
@@ -72,6 +73,7 @@ function getDataFromRecord(classTr){
     data.id = classTr;
     data.kode = $(`.tr_${classTr} .kode`).html().trim();
     data.nama =  $(`.tr_${classTr} .nama`).html().trim()
+    data.stok =  $(`.tr_${classTr} .stok`).html().trim()
     data._token = $('meta[name="csrf-token"]').attr('content');
     return data;
 }
@@ -85,7 +87,7 @@ $(document).on("click", ".btnEdit", function(){
         <tr class="tr_${data.id} formEdit_${data.id}">
             <td><input type="text" class="form-control kode" value="${data.kode}"></td>
             <td><input type="text" class="form-control nama" value="${data.nama}"></td>
-            <td>0</td>
+            <td><input type="text" class="form-control stok" value="${data.stok}" readonly></td>
             <td>
                 <button class="btn btn-primary btnSaveEdit" id="btnSave_${data.id}">Update</button>
                 <button class="btn btn-danger btnCancelEdit" id="btnCancel_${data.id}">Batal</button>
@@ -120,7 +122,7 @@ $(document).on("click", ".btnSaveEdit", function(){
             <tr class="tr_${respond.id}">
                 <td class="kode">${data.kode}</td>
                 <td class="nama">${data.nama}</td>
-                <td>0</td>
+                <td class="stok">${data.stok}</td>
                 <td>
                     <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
                     <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>

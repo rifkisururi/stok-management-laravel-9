@@ -9,7 +9,17 @@ use Illuminate\Support\Facades\DB;
 class BarangController extends Controller
 {
     public function index(){
-        $data = DB::table('barang')->get();
+        $sql = "
+            SELECT 
+                b.id, b.kode, b.nama, ifnull( SUM(mb1.jumlah)- SUM(mb2.jumlah) , 0) as stok 
+                FROM 
+                    barang b 
+                    left join mutasi_barang mb1 on b.id = mb1.id_barang and mb1.category = 'masuk' 
+                    left join mutasi_barang mb2 on b.id = mb2.id_barang and mb2.category = 'keluar'
+            GROUP BY  b.id, b.kode, b.nama
+        ";
+        $data =  DB::select($sql);
+        //$data = DB::table('barang')->get();
         return view('barang.index', ['data' => $data]);
     }
 
