@@ -31,7 +31,54 @@ class MutasiBarangController extends Controller
         $barang = DB::table('barang')->get();
         return view('mutasi.index', ['data' => $data, 'barang' => $barang]);
     }
+    
+    public function masuk(){
+        $mulai = $_GET['mulai'];
+        $selesai = $_GET['selesai'];
 
+        if($mulai == '0000-00-00' && '0000-00-00' == $selesai){
+            $data = DB::table('mutasi_barang')
+            ->join('barang', 'barang.id', '=', 'mutasi_barang.id_barang')
+            ->where('mutasi_barang.category','=','masuk')
+            ->select('barang.nama', 'barang.kode', 'mutasi_barang.*')
+            ->get();
+        }else{
+            $data = DB::table('mutasi_barang')
+            ->join('barang', 'barang.id', '=', 'mutasi_barang.id_barang')
+            ->where('mutasi_barang.tanggal','>=',$mulai)
+            ->where('mutasi_barang.tanggal','<=',$selesai)
+            ->where('mutasi_barang.category','=','masuk')
+            ->select('barang.nama', 'barang.kode', 'mutasi_barang.*')
+            ->get();
+        }
+
+        $barang = DB::table('barang')->get();
+        return view('mutasi.masuk', ['data' => $data, 'barang' => $barang]);
+    }
+    public function keluar(){
+        $mulai = $_GET['mulai'];
+        $selesai = $_GET['selesai'];
+
+        if($mulai == '0000-00-00' && '0000-00-00' == $selesai){
+            $data = DB::table('mutasi_barang')
+            ->join('barang', 'barang.id', '=', 'mutasi_barang.id_barang')
+            ->where('mutasi_barang.category','=','keluar')
+            ->select('barang.nama', 'barang.kode', 'mutasi_barang.*')
+            ->get();
+        }else{
+            $data = DB::table('mutasi_barang')
+            ->join('barang', 'barang.id', '=', 'mutasi_barang.id_barang')
+            ->where('mutasi_barang.tanggal','>=',$mulai)
+            ->where('mutasi_barang.tanggal','<=',$selesai)
+            ->where('mutasi_barang.category','=','keluar')
+            ->select('barang.nama', 'barang.kode', 'mutasi_barang.*')
+            ->get();
+        }
+
+        $barang = DB::table('barang')->get();
+        return view('mutasi.keluar', ['data' => $data, 'barang' => $barang]);
+    }
+    
     public function store(Request $request){
         $data = new Mutasi_barang($request->all());
         $data->save();

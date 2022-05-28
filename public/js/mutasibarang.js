@@ -130,10 +130,11 @@ $(document).on("click", ".btnEdit", function(){
             </td>
         </tr>
         `;
+    $(`.tr_${data.id}`).addClass("old");
     $(`.tr_${data.id}`).hide();
     $(`.tr_${data.id}`).before(htmlFormEdit);
-    $(`.tr_3 .id_barang`).val(data.id_barang).change();
-    $(`.tr_3 .category`).val(data.category).change();
+    $(`.tr_${data.id} .id_barang`).val(data.id_barang).change();
+    $(`.tr_${data.id} .category`).val(data.category).change();
 });
 
 // cancel edit
@@ -166,7 +167,7 @@ $(document).on("click", ".btnSaveEdit", function(){
                 <td class="harga">${data.harga}</td>
                 <td class="category">${data.category}</td>
                 <td>
-                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
+                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${data.id}">Edit</button>
                     
                 </td>
             </tr>
@@ -174,6 +175,7 @@ $(document).on("click", ".btnSaveEdit", function(){
             // <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
             $(`tbody`).prepend(htmlNewRecore);
             $('.formEdit_'+id).remove();
+            $('.tr_'+id + '.old').remove();
         },
         error:function(){
             alert("terjadi kesalahan");
@@ -213,5 +215,5 @@ function makeDropdownBarang(){
 $(document).on("click", ".filterData", function(){
     var mulai = $(".mulai").val();
     var selesai = $(".selesai").val();
-    window.location.href = `http://localhost:8000/mutasibarang?mulai=${mulai}&selesai=${selesai}`;
+    window.location.href = `?mulai=${mulai}&selesai=${selesai}`;
 });

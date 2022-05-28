@@ -35,6 +35,8 @@ Route::POST('barang/hapus',[BarangController:: class,'hapus']);
 
 // Mutasi barang
 Route::get('mutasibarang',[MutasiBarangController:: class,'index'])->name('list-mutasi');
+Route::get('mutasibarangmasuk',[MutasiBarangController:: class,'masuk'])->name('mutasi-masuk');
+Route::get('mutasibarangkeluar',[MutasiBarangController:: class,'keluar'])->name('mutasi-keluar');
 Route::POST('mutasibarang/store',[MutasiBarangController:: class,'store']);
 Route::POST('mutasibarang/update',[MutasiBarangController:: class,'update']);
 Route::POST('mutasibarang/hapus',[MutasiBarangController:: class,'hapus']);

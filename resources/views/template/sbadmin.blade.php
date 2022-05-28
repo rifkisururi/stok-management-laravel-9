@@ -77,6 +77,16 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Mutasi Barang</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('mutasi-masuk')}}?mulai=0000-00-00&selesai=0000-00-00">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Barang Masuk</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('mutasi-keluar')}}?mulai=0000-00-00&selesai=0000-00-00">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Barang Keluar</span></a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->

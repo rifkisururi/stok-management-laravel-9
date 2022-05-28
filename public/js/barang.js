@@ -38,13 +38,13 @@ $(document).on("click", ".btnSave", function(){
         success:function(respond){
             console.log(respond);
             var htmlNewRecore = `
-            <tr class="tr_${respond.id}">
+            <tr class="tr_${respond.last_insert_id}">
                 <td class="kode">${data.kode}</td>
                 <td class="nama">${data.nama}</td>
-                <td>0</td>
+                <td class="stok">0</td>
                 <td>
-                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
-                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
+                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.last_insert_id}">Edit</button>
+                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.last_insert_id}">Hapus</button>
                 </td>
             </tr>
             `;
@@ -94,6 +94,7 @@ $(document).on("click", ".btnEdit", function(){
             </td>
         </tr>
         `;
+    $(`.tr_${data.id}`).addClass("old");
     $(`.tr_${data.id}`).hide();
     $(`.tr_${data.id}`).before(htmlFormEdit);
 });
@@ -119,18 +120,19 @@ $(document).on("click", ".btnSaveEdit", function(){
         success:function(respond){
             console.log(respond);
             var htmlNewRecore = `
-            <tr class="tr_${respond.id}">
+            <tr class="tr_${data.id}">
                 <td class="kode">${data.kode}</td>
                 <td class="nama">${data.nama}</td>
                 <td class="stok">${data.stok}</td>
                 <td>
-                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
-                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
+                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${data.id}">Edit</button>
+                    <button class="btn btn-danger btn-sm btnHapus" id="brg_${data.id}">Hapus</button>
                 </td>
             </tr>
             `;
-            $(`tbody`).prepend(htmlNewRecore);
-            $('.tr_'+id).remove();
+            $('.formEdit_'+ id).after(htmlNewRecore);
+            $('.formEdit_'+id).remove();
+            $('.tr_'+id + '.old').remove();
         },
         error:function(){
             alert("terjadi kesalahan");
