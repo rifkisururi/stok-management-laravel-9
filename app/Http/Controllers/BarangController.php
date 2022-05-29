@@ -11,7 +11,7 @@ class BarangController extends Controller
     public function index(){
         $sql = "
             SELECT 
-                b.id, b.kode, b.nama, ifnull( SUM(mb1.jumlah)- SUM(mb2.jumlah) , 0) as stok 
+                b.id, b.kode, b.nama, ifnull( SUM(mb1.jumlah), 0) - ifnull( SUM(mb2.jumlah) , 0) as stok 
                 FROM 
                     barang b 
                     left join mutasi_barang mb1 on b.id = mb1.id_barang and mb1.category = 'masuk' 
