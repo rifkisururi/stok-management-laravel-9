@@ -58,4 +58,7 @@
 
 @section('js')
 <script src="js/barang.js"></script>
+<script>
+    var canCreate = true;
+</script>
 @endsection
