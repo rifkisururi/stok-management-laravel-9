@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    $userLogin = $_SESSION["userLogin"];
+?>
 @extends('template/sbadmin')
 @section('content')
 <div class="card shadow mb-4">
@@ -24,7 +28,9 @@
                         <th>Jumlah</th>
                         <th>Harga</th>
                         <th>Category</th>
-                        <th>Aksi</th>
+                        <?php
+                            if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,10 +43,12 @@
                             <td class="jumlah">{{$dt->jumlah}}</td>
                             <td class="harga">{{$dt->harga}}</td>
                             <td class="category">{{$dt->category}}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm btnEdit" id="brg_{{$dt->id}}">Edit</button>
-                                <!-- <button class="btn btn-danger btn-sm btnHapus" id="brg_{{$dt->id}}">Hapus</button> -->
-                            </td>
+                            <?php
+                            if($userLogin->role != 'owner'){echo "
+                                <td>
+                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_{{$dt->id}}'>Edit</button>
+                                </td>";}
+                            ?>  
                         </tr>
                     @endforeach
                 </tbody>
@@ -53,7 +61,9 @@
                         <th>Jumlah</th>
                         <th>Harga</th>
                         <th>Category</th>
-                        <th>Aksi</th>
+                        <?php
+                            if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
+                        ?>
                     </tr>
                 </tfoot>
             </table>
@@ -64,8 +74,9 @@
 
 
 @section('js')
-<script src="js/mutasibarang.js"></script>
+<script src="js/mutasibarang.js?date=<?php echo floor(microtime(true) * 1000)?>")></script>
 <script>
+    var canCreate = true;
     var barang = <?php echo $barang ?>;
 </script>
 @endsection

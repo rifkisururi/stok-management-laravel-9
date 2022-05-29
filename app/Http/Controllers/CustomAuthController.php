@@ -13,8 +13,12 @@ class CustomAuthController extends Controller{
     }
 
     public function customLogin(Request $request){
+        session_start();
         $credentials = $request->only('email', 'password');
+        
         if(Auth::attempt($credentials)){
+            $user = Auth::user();
+            $_SESSION["userLogin"] = $user;
             return redirect()->intended('dashboard')->withSuccess('Masuk');
         }else{
             return view('auth.login');
@@ -50,8 +54,16 @@ class CustomAuthController extends Controller{
     }
 
     public function logOut(){
+        
+        session_start();
         //Session::flush();
         Auth::logout();
+        // remove all session variables
+        session_unset();
+
+        // destroy the session
+        session_destroy();
+
         return redirect('login');
     }
 

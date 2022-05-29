@@ -1,4 +1,8 @@
 
+<?php 
+    session_start();
+    $userLogin = $_SESSION["userLogin"];
+?>
 @extends('template/sbadmin')
 @section('content')
 <div class="card shadow mb-4">
@@ -59,8 +63,9 @@
 
 
 @section('js')
-<script src="js/mutasibarang.js"></script>
+<script src="js/mutasibarang.js?date=<?php echo floor(microtime(true) * 1000)?>")></script>
 <script>
+    var canCreate = false;
     var barang = <?php echo $barang ?>;
 </script>
 @endsection

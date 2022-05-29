@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    $(".dataTables_length label").before("<button class='btn btn-primary' id='add'>Tambah</button>");
+    if(canCreate == true && role == "admin"){
+        $(".dataTables_length label").before("<button class='btn btn-primary' id='add'>Tambah</button>");
+    }
 });
 
 // ketika tombol tambah ditekan 

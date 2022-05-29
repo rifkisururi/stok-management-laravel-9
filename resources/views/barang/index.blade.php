@@ -1,5 +1,10 @@
+<?php 
+    session_start();
+    $userLogin = $_SESSION["userLogin"];
+?>
 @extends('template/sbadmin')
 @section('content')
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
@@ -12,7 +17,9 @@
                         <th>Kode</th>
                         <th>Nama</th>
                         <th>Stok</th>
-                        <th>Aksi</th>
+                        <?php
+                            if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,9 +28,13 @@
                             <td class="kode">{{$dt->kode}}</td>
                             <td class="nama">{{$dt->nama}}</td>
                             <td class="stok">{{$dt->stok}}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm btnEdit" id="brg_{{$dt->id}}">Edit</button>
-                                <button class="btn btn-danger btn-sm btnHapus" id="brg_{{$dt->id}}">Hapus</button>
+                            <?php
+                            if($userLogin->role != 'owner'){echo "
+                                <td>
+                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_{{$dt->id}}'>Edit</button>
+                                    <button class='btn btn-danger btn-sm btnHapus' id='brg_{{$dt->id}}'>Hapus</button>
+                                </td>";}
+                            ?>                                
                             </td>
                         </tr>
                     @endforeach
@@ -33,7 +44,9 @@
                         <th>Kode</th>
                         <th>Nama</th>
                         <th>Stok</th>
-                        <th>Aksi</th>
+                        <?php
+                            if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
+                        ?>
                     </tr>
                 </tfoot>
             </table>
