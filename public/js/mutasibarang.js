@@ -19,6 +19,7 @@ $(document).on("click", "#add", function(){
             <td><input type="date" class="form-control tanggal"></td>
             <td><input type="number" min="0" class="form-control jumlah"></td>
             <td><input type="number" min="0" class="form-control harga"></td>
+            <td></td>
             <td>
                 <select class="form-control category">
                     <option value="Masuk">Masuk</option>
@@ -60,6 +61,7 @@ $(document).on("click", ".btnSave", function(){
                 <td class="tanggal">${data.tanggal}</td>
                 <td class="jumlah">${data.jumlah}</td>
                 <td class="harga">${data.harga}</td>
+                <td class="">${data.harga*data.jumlah}</td>
                 <td class="category">${data.category}</td>
                 <td>
                     <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
@@ -120,6 +122,7 @@ $(document).on("click", ".btnEdit", function(){
             <td><input type="date" class="form-control tanggal" value="${data.tanggal}"></td>
             <td><input type="text" class="form-control jumlah" value="${data.jumlah}"></td>
             <td><input type="text" class="form-control harga" value="${data.harga}"></td>
+            <td></td>
             <td>
                 <select class="form-control category">
                     <option value="Masuk">Masuk</option>
@@ -167,6 +170,7 @@ $(document).on("click", ".btnSaveEdit", function(){
                 <td class="tanggal">${data.tanggal}</td>
                 <td class="jumlah">${data.jumlah}</td>
                 <td class="harga">${data.harga}</td>
+                <td class="">${data.harga*data.jumlah}</td>
                 <td class="category">${data.category}</td>
                 <td>
                     <button class="btn btn-warning btn-sm btnEdit" id="brg_${data.id}">Edit</button>

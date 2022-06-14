@@ -27,6 +27,7 @@
                         <th>Tanggal</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
+                        <th>Total</th>
                         <th>Category</th>
                         <?php
                             if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
@@ -42,30 +43,19 @@
                             <td class="tanggal">{{$dt->tanggal}}</td>
                             <td class="jumlah">{{$dt->jumlah}}</td>
                             <td class="harga">{{$dt->harga}}</td>
+                            <?php
+                                echo "<td>".$dt->harga*$dt->jumlah."</td>";
+                            ?>
                             <td class="category">{{$dt->category}}</td>
                             <?php
                             if($userLogin->role != 'owner'){echo "
                                 <td>
-                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_{{$dt->id}}'>Edit</button>
+                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_{$dt->id}'>Edit</button>
                                 </td>";}
-                            ?>  
+                            ?>
                         </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th hidden>Id Barang</th>
-                        <th>Kode</th>
-                        <th>Nama barang</th>
-                        <th>Tanggal</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>Category</th>
-                        <?php
-                            if($userLogin->role != 'owner'){echo "<th>Aksi</th>";}
-                        ?>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

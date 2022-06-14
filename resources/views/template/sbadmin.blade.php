@@ -88,6 +88,18 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Barang Keluar</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('mutasi-keluar')}}?mulai=0000-00-00&selesai=0000-00-00">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Barang Keluar</span></a>
+            </li>
+            <?php if($userLogin->role == 'owner'){?>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('rekapitulasi')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Rekapitulsi</span></a>
+                </li>
+            <?php } ?>
 
         </ul>
         <!-- End of Sidebar -->

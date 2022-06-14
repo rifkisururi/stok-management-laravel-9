@@ -116,4 +116,35 @@ class MutasiBarangController extends Controller
             'success' => true
         ), 200);
     }
+
+    public function rekapitulasi(){
+        $sql = "            
+            select CONCAT(MONTHNAME(STR_TO_DATE(CONCAT(a.Tahun,'-',a.Bulan,'-01'), '%Y-%m-%d')),' ', a.Tahun ) nama , a.Bulan, a.Tahun, a.pembelian, IFNULL(b.penjualan, 0) as penjualan 
+            from (
+                select 
+                    MONTH(tanggal) Bulan, 
+                    YEAR(tanggal) Tahun, 
+                    sum(jumlah*harga) as pembelian 
+                from 
+                    mutasi_barang mb where category = 'Masuk'
+                group by 
+                    MONTH(tanggal), YEAR(tanggal)
+            ) a left join 
+            (
+                select 
+                    MONTH(tanggal) Bulan, 
+                    YEAR(tanggal) Tahun, 
+                    sum(jumlah*harga) as penjualan 
+                from 
+                    mutasi_barang mb where category = 'Keluar'
+                group by 
+                    MONTH(tanggal), YEAR(tanggal)
+            ) b on a.Bulan = b.Bulan and a.Tahun = b.Tahun
+            order by a.Tahun, a.Bulan
+
+
+        ";
+        $data =  DB::select($sql);
+        return view('mutasi.rekapitulasi', ['data' => $data]);
+    }
 }

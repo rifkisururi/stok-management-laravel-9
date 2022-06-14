@@ -41,4 +41,6 @@ Route::POST('mutasibarang/store',[MutasiBarangController:: class,'store']);
 Route::POST('mutasibarang/update',[MutasiBarangController:: class,'update']);
 Route::POST('mutasibarang/hapus',[MutasiBarangController:: class,'hapus']);
 
+Route::get('rekapitulasi',[MutasiBarangController:: class,'rekapitulasi'])->name('rekapitulasi');
+
 
