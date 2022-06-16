@@ -88,11 +88,6 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Barang Keluar</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('mutasi-keluar')}}?mulai=0000-00-00&selesai=0000-00-00">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Barang Keluar</span></a>
-            </li>
             <?php if($userLogin->role == 'owner'){?>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('rekapitulasi')}}">
@@ -146,7 +141,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Keluar
                                 </a>
                             </div>
                         </li>

@@ -1,16 +1,4 @@
-<?php 
-    session_start();
-    $userLogin = $_SESSION["userLogin"];
-?>
-@extends('template/sbadmin')
-@section('content')
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Rekapitulsi <a href="{{route('cetak')}}"><button class="btn btn-primary">Unduh</button></a></h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered tblBarang" id="dataTable" width="100%" cellspacing="0">
+<table class="" id="" border="1" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Bulan</th>
@@ -33,12 +21,3 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-@endsection
-
-
-@section('js')
-
-@endsection
