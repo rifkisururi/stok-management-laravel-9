@@ -31,8 +31,8 @@
                             <?php
                             if($userLogin->role != 'owner'){echo "
                                 <td>
-                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_{{$dt->id}}'>Edit</button>
-                                    <button class='btn btn-danger btn-sm btnHapus' id='brg_{{$dt->id}}'>Hapus</button>
+                                    <button class='btn btn-warning btn-sm btnEdit' id='brg_$dt->id'>Edit</button>
+                                    <button class='btn btn-danger btn-sm btnHapus' id='brg_$dt->id'>Hapus</button>
                                 </td>";}
                             ?>                                
                             </td>
