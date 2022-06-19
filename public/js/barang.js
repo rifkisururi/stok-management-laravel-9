@@ -64,7 +64,7 @@ function getData(classTr){
     data.id = classTr;
     data.kode = $(`.tr_${classTr} .kode`).val();
     data.nama =  $(`.tr_${classTr} .nama`).val();
-    data.stok =  $(`.tr_${classTr} .stok`).val();
+    data.stok =  0;//$(`.tr_${classTr} .stok`).val();
     data._token = $('meta[name="csrf-token"]').attr('content');
     return data;
 }

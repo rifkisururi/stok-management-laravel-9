@@ -128,7 +128,9 @@ class MutasiBarangController extends Controller
                     YEAR(tanggal) Tahun, 
                     sum(jumlah*harga) as pembelian 
                 from 
-                    mutasi_barang mb where category = 'Masuk'
+                    mutasi_barang mb 
+                    inner join barang b on mb.id_barang = b.id
+                where category = 'Masuk'
                 group by 
                     MONTH(tanggal), YEAR(tanggal)
             ) a left join 
@@ -138,13 +140,13 @@ class MutasiBarangController extends Controller
                     YEAR(tanggal) Tahun, 
                     sum(jumlah*harga) as penjualan 
                 from 
-                    mutasi_barang mb where category = 'Keluar'
+                    mutasi_barang mb 
+                    inner join barang b on mb.id_barang = b.id
+                where category = 'Keluar'
                 group by 
                     MONTH(tanggal), YEAR(tanggal)
             ) b on a.Bulan = b.Bulan and a.Tahun = b.Tahun
             order by a.Tahun, a.Bulan
-
-
         ";
         $data =  DB::select($sql);
         return view('mutasi.rekapitulasi', ['data' => $data]);
