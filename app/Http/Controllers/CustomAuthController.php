@@ -16,11 +16,14 @@ class CustomAuthController extends Controller{
         session_start();
         $credentials = $request->only('email', 'password');
         
+        
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             $_SESSION["userLogin"] = $user;
             return redirect()->intended('dashboard')->withSuccess('Masuk');
         }else{
+            $message = "username atau password yang anda masukan salah ";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             return view('auth.login');
         }
         
