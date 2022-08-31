@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->integer('harga');
-            $table->string('category');
+            $table->string('category', 150);
         });
     }
 

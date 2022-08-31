@@ -53,24 +53,29 @@ $(document).on("click", ".btnSave", function(){
         data : data,
         success:function(respond){
             console.log(respond);
-            var htmlNewRecore = `
-            <tr class="tr_${respond.id}">
-                <td class="kode">${respond.kode}</td>
-                <td class="id_barang" hidden>${data.id_barang}</td>
-                <td class="nama">${respond.nama}</td>
-                <td class="tanggal">${data.tanggal}</td>
-                <td class="jumlah">${data.jumlah}</td>
-                <td class="harga">${data.harga}</td>
-                <td class="">${data.harga*data.jumlah}</td>
-                <td class="category">${data.category}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
-                </td>
-            </tr>
-            `;
-            // <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
-            $(`tbody`).prepend(htmlNewRecore);
-            $('.tr_'+id).remove();
+            if(respond.success == true){
+                var htmlNewRecore = `
+                <tr class="tr_${respond.id}">
+                    <td class="kode">${respond.kode}</td>
+                    <td class="id_barang" hidden>${data.id_barang}</td>
+                    <td class="nama">${respond.nama}</td>
+                    <td class="tanggal">${data.tanggal}</td>
+                    <td class="jumlah">${data.jumlah}</td>
+                    <td class="harga">${data.harga}</td>
+                    <td class="">${data.harga*data.jumlah}</td>
+                    <td class="category">${data.category}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm btnEdit" id="brg_${respond.id}">Edit</button>
+                    </td>
+                </tr>
+                `;
+                // <button class="btn btn-danger btn-sm btnHapus" id="brg_${respond.id}">Hapus</button>
+                $(`tbody`).prepend(htmlNewRecore);
+                $('.tr_'+id).remove();
+            }else{
+                alert("terjadi kesalahan, pastikan kembali data yang diinput");
+            }
+            
         },
         error:function(){
             alert("terjadi kesalahan");

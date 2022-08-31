@@ -82,15 +82,46 @@ class MutasiBarangController extends Controller
     }
     
     public function store(Request $request){
-        $data = new Mutasi_barang($request->all());
-        $data->save();
         $barang = DB::table('barang')->where('id', $request->id_barang)->first();
-        return response()->json(array(
-            'success' => true,
-            'last_insert_id' => $data->id,
-            'kode' => $barang->kode,
-            'nama' => $barang->nama
-        ), 200);
+        $sql = "
+            SELECT 
+                b.id, b.kode, b.nama, ifnull( SUM(mb1.jumlah), 0) - ifnull( SUM(mb2.jumlah) , 0) as stok 
+                FROM 
+                    barang b 
+                    left join mutasi_barang mb1 on b.id = mb1.id_barang and mb1.category = 'masuk' 
+                    left join mutasi_barang mb2 on b.id = mb2.id_barang and mb2.category = 'keluar'
+            where b.id = $request->id_barang
+            GROUP BY  b.id, b.kode, b.nama
+        ";
+        $dataStok =  DB::select($sql);
+        $data = json_encode($dataStok[0]);
+        $data = json_decode($data);
+        $stok = $data->stok;
+        if($request->category == "Keluar"){
+            if($stok < $request->jumlah ){
+                return response()->json(array(
+                    'success' => false
+                ), 200);
+            }else{
+                $data = new Mutasi_barang($request->all());
+                $data->save();
+                return response()->json(array(
+                    'success' => true,
+                    'last_insert_id' => $data->id,
+                    'kode' => $barang->kode,
+                    'nama' => $barang->nama
+                ), 200);    
+            }
+        }else{
+            $data = new Mutasi_barang($request->all());
+            $data->save();
+            return response()->json(array(
+                'success' => true,
+                'last_insert_id' => $data->id,
+                'kode' => $barang->kode,
+                'nama' => $barang->nama
+            ), 200);
+        }
     }
 
     public function update(Request $request)

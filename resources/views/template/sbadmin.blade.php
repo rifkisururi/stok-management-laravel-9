@@ -89,9 +89,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('rekapitulasi')}}">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Rekapitulsi</span></a>
+                        <span>Laba Rugi</span></a>
                 </li>
-            <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('lap')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Stok Barang</span></a>
+                </li>
+            <?php } ?>;
 
         </ul>
         <!-- End of Sidebar -->
